@@ -7,30 +7,31 @@ import com.amazonaws.services.s3.AmazonS3Client;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.core.env.Environment;
 
 @Configuration
 public class S3Config {
 
-    @Value("${cloud.s3.accessKey}")
+    @Value("${ACCESS_KEY}")
     private String accessKey;
 
-    @Value("${cloud.s3.secretKey}")
+    @Value("${SECRET_KEY}")
     private String secretKey;
 
-    @Value("${cloud.s3.region}")
+    @Value("${AWS_REGION}")
     private String region;
 
 
     @Bean
     public AmazonS3 s3Client() {
-
         var credentials = new BasicAWSCredentials(accessKey,secretKey);
-
-        return AmazonS3Client
+        var S3Client = AmazonS3Client
                 .builder()
                 .withCredentials(new AWSStaticCredentialsProvider(credentials))
                 .withRegion(region)
                 .build();
+
+        return S3Client;
     }
 
 }
