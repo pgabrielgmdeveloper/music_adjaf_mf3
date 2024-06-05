@@ -21,4 +21,5 @@ public class SingerService {
     public List<SingerResponse> getAllSinger() {
         return getAllSingersUseCase.execute();
     }
+
 }

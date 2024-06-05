@@ -1,7 +1,7 @@
 package com.pgabrieldeveloper.music_adjaf_mf3.music_adjaf_mf3.cult.model;
 
 import com.pgabrieldeveloper.music_adjaf_mf3.music_adjaf_mf3.cult.repository.entity.Cult;
-import com.pgabrieldeveloper.music_adjaf_mf3.music_adjaf_mf3.praise.repository.entity.Praise;
+import com.pgabrieldeveloper.music_adjaf_mf3.music_adjaf_mf3.cult.repository.entity.Praise;
 
 import java.util.List;
 

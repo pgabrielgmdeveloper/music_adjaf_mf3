@@ -1,5 +1,6 @@
 package com.pgabrieldeveloper.music_adjaf_mf3.music_adjaf_mf3.cult.controller.API;
 
+import com.pgabrieldeveloper.music_adjaf_mf3.music_adjaf_mf3.cult.model.AddPraiseOnCultRequest;
 import com.pgabrieldeveloper.music_adjaf_mf3.music_adjaf_mf3.cult.model.CreateCultRequest;
 import com.pgabrieldeveloper.music_adjaf_mf3.music_adjaf_mf3.cult.model.CultResponse;
 import org.apache.coyote.Response;
@@ -21,4 +22,9 @@ public interface CultAPI {
 
     @GetMapping
     ResponseEntity<List<CultResponse>> getAllCultResponse();
+
+    @PostMapping("addpraise")
+    ResponseEntity<?> addPraise(
+            @RequestBody AddPraiseOnCultRequest request
+    );
 }

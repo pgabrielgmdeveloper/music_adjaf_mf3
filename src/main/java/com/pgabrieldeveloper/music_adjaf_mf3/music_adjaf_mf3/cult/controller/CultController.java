@@ -1,6 +1,7 @@
 package com.pgabrieldeveloper.music_adjaf_mf3.music_adjaf_mf3.cult.controller;
 
 import com.pgabrieldeveloper.music_adjaf_mf3.music_adjaf_mf3.cult.controller.API.CultAPI;
+import com.pgabrieldeveloper.music_adjaf_mf3.music_adjaf_mf3.cult.model.AddPraiseOnCultRequest;
 import com.pgabrieldeveloper.music_adjaf_mf3.music_adjaf_mf3.cult.model.CreateCultRequest;
 import com.pgabrieldeveloper.music_adjaf_mf3.music_adjaf_mf3.cult.model.CultResponse;
 import com.pgabrieldeveloper.music_adjaf_mf3.music_adjaf_mf3.cult.service.CultService;
@@ -27,5 +28,12 @@ public class CultController implements CultAPI {
     @Override
     public ResponseEntity<List<CultResponse>> getAllCultResponse() {
         return ResponseEntity.ok(service.getCultDay());
+    }
+
+    @Override
+    public ResponseEntity<?> addPraise(AddPraiseOnCultRequest request) {
+        service.AddPraiseInCult(request);
+        return ResponseEntity.status(HttpStatus.CREATED).body(null);
+
     }
 }

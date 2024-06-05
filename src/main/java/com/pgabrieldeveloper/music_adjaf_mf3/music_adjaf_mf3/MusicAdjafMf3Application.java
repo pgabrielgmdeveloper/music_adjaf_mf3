@@ -14,4 +14,10 @@ public class MusicAdjafMf3Application {
 		SpringApplication.run(MusicAdjafMf3Application.class, args);
 	}
 
+	@Bean
+	ApplicationRunner runner () {
+		return args -> {
+
+		};
+	}
 }
