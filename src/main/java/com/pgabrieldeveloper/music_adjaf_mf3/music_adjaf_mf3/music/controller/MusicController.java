@@ -5,6 +5,7 @@ import com.pgabrieldeveloper.music_adjaf_mf3.music_adjaf_mf3.music.controller.mu
 import com.pgabrieldeveloper.music_adjaf_mf3.music_adjaf_mf3.music.model.CreateMusicRequest;
 import com.pgabrieldeveloper.music_adjaf_mf3.music_adjaf_mf3.music.model.ErroResponse;
 import com.pgabrieldeveloper.music_adjaf_mf3.music_adjaf_mf3.music.model.MusicResponse;
+import com.pgabrieldeveloper.music_adjaf_mf3.music_adjaf_mf3.music.model.PressinedUrlResponse;
 import com.pgabrieldeveloper.music_adjaf_mf3.music_adjaf_mf3.music.services.MusicService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -36,15 +37,25 @@ public class MusicController implements MusicAPI {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new ErroResponse("Error ao Salvar dados no banco", e.getMessage()));
 
         }
-
     }
 
     @Override
-    public ResponseEntity<List<MusicResponse>> GetAllMusic(String name) {
+    public ResponseEntity<List<MusicResponse>> getAllMusic(String name) {
         try {
-            return ResponseEntity.ok(musicService.GetAllMusic(name));
+            return ResponseEntity.ok(musicService.getAllMusic(name));
         }catch (Exception ex){
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
         }
+    }
+
+    @Override
+    public ResponseEntity<MusicResponse> getMusicById(String musicId) {
+        var response =musicService.getMusicById(musicId);
+        return ResponseEntity.ok(response);
+    }
+
+    @Override
+    public ResponseEntity<PressinedUrlResponse> getPressinedMusic(String musicId) {
+        return ResponseEntity.ok(musicService.getPressinedURIMusic(musicId));
     }
 }
