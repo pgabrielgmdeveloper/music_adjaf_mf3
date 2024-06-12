@@ -34,7 +34,7 @@ public class MusicService {
         return getMusicByIdUseCase.execute(musicId);
     }
 
-    public PressinedUrlResponse getPressinedURIMusic(String id){
+    private PressinedUrlResponse getPressinedURIMusic(String id){
         var music = getMusicByIdUseCase.execute(id);
         if(music == null) {
             return null;
@@ -48,6 +48,10 @@ public class MusicService {
                 URI
         );
 
+    }
+
+    public List<PressinedUrlResponse> getAllPressinedURIMusic(List<String> ids) {
+        return ids.stream().map(this::getPressinedURIMusic).toList();
     }
 
     public List<MusicResponse> getAllMusic(String name) throws Exception {

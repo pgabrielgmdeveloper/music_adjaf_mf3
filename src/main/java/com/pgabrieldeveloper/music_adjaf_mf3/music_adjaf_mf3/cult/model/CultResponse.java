@@ -1,5 +1,6 @@
 package com.pgabrieldeveloper.music_adjaf_mf3.music_adjaf_mf3.cult.model;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.pgabrieldeveloper.music_adjaf_mf3.music_adjaf_mf3.cult.repository.entity.Cult;
 import com.pgabrieldeveloper.music_adjaf_mf3.music_adjaf_mf3.cult.repository.entity.Praise;
 
@@ -8,6 +9,7 @@ import java.util.List;
 public record CultResponse(
         String id,
         String name,
+        @JsonProperty("praise")
         List<PraiseResponse> praiseResponses
 
 ) {

@@ -2,6 +2,7 @@ package com.pgabrieldeveloper.music_adjaf_mf3.music_adjaf_mf3.music.controller.m
 
 import com.pgabrieldeveloper.music_adjaf_mf3.music_adjaf_mf3.music.model.MusicResponse;
 import com.pgabrieldeveloper.music_adjaf_mf3.music_adjaf_mf3.music.model.PressinedUrlResponse;
+import com.pgabrieldeveloper.music_adjaf_mf3.music_adjaf_mf3.music.model.RequestMusicPressinedURL;
 import jakarta.websocket.server.PathParam;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -29,9 +30,9 @@ public interface MusicAPI {
       @PathVariable("id") String musicId
     );
 
-    @GetMapping("pressined/{id}")
-    ResponseEntity<PressinedUrlResponse> getPressinedMusic(
-      @PathVariable("id") String musicId
+    @PostMapping("pressined")
+    ResponseEntity<List<PressinedUrlResponse>> getPressinedMusic(
+       @RequestBody  RequestMusicPressinedURL musicsId
     );
 
 }

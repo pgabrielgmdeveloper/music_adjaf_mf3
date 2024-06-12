@@ -2,10 +2,7 @@ package com.pgabrieldeveloper.music_adjaf_mf3.music_adjaf_mf3.music.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.pgabrieldeveloper.music_adjaf_mf3.music_adjaf_mf3.music.controller.musicAPI.MusicAPI;
-import com.pgabrieldeveloper.music_adjaf_mf3.music_adjaf_mf3.music.model.CreateMusicRequest;
-import com.pgabrieldeveloper.music_adjaf_mf3.music_adjaf_mf3.music.model.ErroResponse;
-import com.pgabrieldeveloper.music_adjaf_mf3.music_adjaf_mf3.music.model.MusicResponse;
-import com.pgabrieldeveloper.music_adjaf_mf3.music_adjaf_mf3.music.model.PressinedUrlResponse;
+import com.pgabrieldeveloper.music_adjaf_mf3.music_adjaf_mf3.music.model.*;
 import com.pgabrieldeveloper.music_adjaf_mf3.music_adjaf_mf3.music.services.MusicService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -55,7 +52,9 @@ public class MusicController implements MusicAPI {
     }
 
     @Override
-    public ResponseEntity<PressinedUrlResponse> getPressinedMusic(String musicId) {
-        return ResponseEntity.ok(musicService.getPressinedURIMusic(musicId));
+    public ResponseEntity<List<PressinedUrlResponse>> getPressinedMusic(RequestMusicPressinedURL musicsId) {
+        return ResponseEntity.ok(musicService.getAllPressinedURIMusic(musicsId.musicsIds()));
     }
+
+
 }
