@@ -36,4 +36,9 @@ public class CultController implements CultAPI {
         return ResponseEntity.status(HttpStatus.CREATED).body(null);
 
     }
+
+    @Override
+    public ResponseEntity<CultResponse> getCultById(String id) {
+        return ResponseEntity.ok(service.getCultById(id));
+    }
 }

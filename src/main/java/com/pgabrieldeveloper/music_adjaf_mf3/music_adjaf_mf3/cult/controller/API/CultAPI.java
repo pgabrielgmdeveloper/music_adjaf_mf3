@@ -3,12 +3,10 @@ package com.pgabrieldeveloper.music_adjaf_mf3.music_adjaf_mf3.cult.controller.AP
 import com.pgabrieldeveloper.music_adjaf_mf3.music_adjaf_mf3.cult.model.AddPraiseOnCultRequest;
 import com.pgabrieldeveloper.music_adjaf_mf3.music_adjaf_mf3.cult.model.CreateCultRequest;
 import com.pgabrieldeveloper.music_adjaf_mf3.music_adjaf_mf3.cult.model.CultResponse;
+import com.pgabrieldeveloper.music_adjaf_mf3.music_adjaf_mf3.cult.repository.entity.Cult;
 import org.apache.coyote.Response;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -26,5 +24,10 @@ public interface CultAPI {
     @PostMapping("addpraise")
     ResponseEntity<?> addPraise(
             @RequestBody AddPraiseOnCultRequest request
+    );
+
+    @GetMapping("/{id}")
+    ResponseEntity<CultResponse> getCultById(
+            @PathVariable String id
     );
 }

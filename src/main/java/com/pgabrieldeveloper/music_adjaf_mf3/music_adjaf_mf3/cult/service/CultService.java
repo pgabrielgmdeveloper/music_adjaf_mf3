@@ -5,6 +5,7 @@ import com.pgabrieldeveloper.music_adjaf_mf3.music_adjaf_mf3.cult.model.CreateCu
 import com.pgabrieldeveloper.music_adjaf_mf3.music_adjaf_mf3.cult.model.CultResponse;
 import com.pgabrieldeveloper.music_adjaf_mf3.music_adjaf_mf3.cult.usecase.AddPraiseInCultUseCase;
 import com.pgabrieldeveloper.music_adjaf_mf3.music_adjaf_mf3.cult.usecase.CreateCultUseCase;
+import com.pgabrieldeveloper.music_adjaf_mf3.music_adjaf_mf3.cult.usecase.GetCultByIdUseCase;
 import com.pgabrieldeveloper.music_adjaf_mf3.music_adjaf_mf3.cult.usecase.GetCultDayUseCase;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -18,9 +19,15 @@ public class CultService {
     private final CreateCultUseCase createCultUseCase;
     private final GetCultDayUseCase getCultDayUseCase;
     private final AddPraiseInCultUseCase addPraiseInCultUseCase;
+    private final GetCultByIdUseCase getCultByIdUseCase;
+
 
     public void createCult(CreateCultRequest request) {
         createCultUseCase.execute(request);
+    }
+
+    public CultResponse getCultById(String id) {
+        return getCultByIdUseCase.execute(id);
     }
 
     public List<CultResponse> getCultDay() {
