@@ -25,7 +25,6 @@ public interface CultAPI {
     ResponseEntity<?> addPraise(
             @RequestBody AddPraiseOnCultRequest request
     );
-
     @GetMapping("/{id}")
     ResponseEntity<CultResponse> getCultById(
             @PathVariable String id
