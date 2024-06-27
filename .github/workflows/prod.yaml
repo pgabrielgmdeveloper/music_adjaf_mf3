@@ -16,6 +16,7 @@ jobs:
         with:
           distribution: 'zulu'
           java-version: '17'
+      - name: Build project
         run: ./gradlew build -x test
       - name: Login no Docker hub
         run: docker login -u ${{secrets.DOCKER_USERNAME}} -p ${{secrets.DOCKER_PASSWORD}}
