@@ -1,4 +1,4 @@
-FROM azul/zulu-openjdk-alphine:17-latest
+FROM azul/zulu-openjdk:17-latest
 
 WORKDIR /app
 COPY build/libs/music_adjaf_mf3-0.0.1.jar app.jar
