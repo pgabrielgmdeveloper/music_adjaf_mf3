@@ -6,21 +6,37 @@ on:
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+#    runs-on: ubuntu-latest
+#    steps:
+#      - name: Checkout code
+#        uses: actions/checkout@v4
+#
+#      - name: Setup Java
+#        uses: actions/setup-java@v4
+#        with:
+#          distribution: 'zulu'
+#          java-version: '17'
+#      - name: Build project
+#        run: ./gradlew build -x test
+#      - name: Login no Docker hub
+#        run: docker login -u ${{secrets.DOCKER_USERNAME}} -p ${{secrets.DOCKER_PASSWORD}}
+#      - name: Build imagem docker
+#        run: docker build -t pgabrieldevelopoer/music_adjaf_mf3:latest .
+#      - name: Push imagem docker
+#        run: docker push pgabrieldevelopoer/music_adjaf_mf3
+  deploy:
+    needs: build
+    runs-on: self-hosted
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
-
-      - name: Setup Java
-        uses: actions/setup-java@v4
-        with:
-          distribution: 'zulu'
-          java-version: '17'
       - name: Build project
         run: ./gradlew build -x test
-      - name: Login no Docker hub
-        run: docker login -u ${{secrets.DOCKER_USERNAME}} -p ${{secrets.DOCKER_PASSWORD}}
-      - name: Build imagem docker
-        run: docker build -t pgabrieldevelopoer/music_adjaf_mf3 .
-      - name: Push imagem docker
-        run: docker push pgabrieldevelopoer/music_adjaf_mf3
+      - name: Adicionando Envs
+        run: export ACCESS_KEY=${{secrets.ACCESS_KEY}} \
+              BUCKET_NAME=${{secrets.BUCKET_NAME}} \
+              MUSIC_DATABASE_HOST=${{secrets.MUSIC_DATABASE_HOST}} \
+              MUSIC_DATABASE_PASSWORD=${{secrets.MUSIC_DATABASE_PASSWORD}} \
+              MUSIC_DATABASE_USER=${{secrets.MUSIC_DATABASE_USER}} \
+              SECRET_KEY=${{secrets.SECRET_KEY}}
+      - name: Run app
+        run: java -jar build/libs/music_adjaf_mf3-0.0.1.jar
+
