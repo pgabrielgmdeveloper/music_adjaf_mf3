@@ -8,6 +8,8 @@ jobs:
   deploy:
     runs-on: self-hosted
     steps:
+      - name: Download project
+        run: actions/checkout@v4
       - name: Build project
         run: ./gradlew build -x test
       - name: Adicionando Envs
