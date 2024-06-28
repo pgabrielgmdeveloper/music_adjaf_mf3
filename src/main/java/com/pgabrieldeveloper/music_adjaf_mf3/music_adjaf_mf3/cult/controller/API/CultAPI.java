@@ -6,6 +6,7 @@ import com.pgabrieldeveloper.music_adjaf_mf3.music_adjaf_mf3.cult.model.CultResp
 import com.pgabrieldeveloper.music_adjaf_mf3.music_adjaf_mf3.cult.repository.entity.Cult;
 import org.apache.coyote.Response;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
