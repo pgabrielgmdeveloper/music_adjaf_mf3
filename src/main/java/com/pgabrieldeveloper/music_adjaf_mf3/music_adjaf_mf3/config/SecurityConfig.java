@@ -4,6 +4,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -28,8 +29,12 @@ public class SecurityConfig {
         return httpSecurity
                 .csrf(csrf -> csrf.disable())
                 .authorizeHttpRequests(
-                    requests -> requests.requestMatchers("/authentication", "/api-docs/**","/api-docs.yaml", "/swagger-ui/**")
+                    requests -> requests.requestMatchers("v1/authentication/**", "/api-docs/**","/api-docs.yaml", "/swagger-ui/**")
                         .permitAll()
+                            .requestMatchers(HttpMethod.POST, "/v1/cult").hasRole("ADMIN")
+                            .requestMatchers(HttpMethod.POST, "/v1/cult/addpraise").hasAnyRole("REGENTE", "ADMIN", "SONOPLASTA")
+                            .requestMatchers(HttpMethod.POST, "/v1/singer").hasAnyRole("REGENTE", "ADMIN", "SONOPLASTA")
+                            .requestMatchers(HttpMethod.POST, "/v1/music").hasAnyRole("REGENTE", "ADMIN", "SONOPLASTA")
                         .anyRequest().authenticated())
                 .cors(cors -> cors.configurationSource(corsConfigurationSource()))
                 .addFilterBefore(securityFilter, UsernamePasswordAuthenticationFilter.class)
@@ -47,6 +52,8 @@ public class SecurityConfig {
         CorsConfiguration config = new CorsConfiguration();
         config.setAllowCredentials(true);
         config.addAllowedOrigin("http://localhost:4200");
+        config.addAllowedOrigin("http://localhost:80");
+        config.addAllowedOrigin("http://localhost");
         config.addAllowedHeader(HttpHeaders.CONTENT_TYPE);
         config.addAllowedHeader(HttpHeaders.AUTHORIZATION);
         config.addAllowedMethod("*");
