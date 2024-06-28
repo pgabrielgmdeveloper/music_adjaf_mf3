@@ -23,7 +23,7 @@ public class AuthenticationController  implements AuthenticationAPI {
     public ResponseEntity<AuthResponse> login(AuthRequest authentication) {
 
         return ResponseEntity.ok(
-                new AuthResponse(service.login(authentication))
+                service.login(authentication)
         );
     }
 
