@@ -7,6 +7,8 @@ pipeline {
         ACCESS_KEY = credentials('access_key')
         SECRET_KEY = credentials('secret_key')
         BUCKET_NAME = credentials('bucket_name')
+        PUBLIC_KEY = credentials('pub_key')
+        PRIVATE_KEY = credentials('priv_key')
     }
     stages {
         stage('Build project') {
