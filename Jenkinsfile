@@ -20,7 +20,7 @@ pipeline {
         stage('Running Project'){
             steps{
                 script {
-                    sh 'java - jar "build/libs/music_adjaf_mf3-0.0.1.jar"'
+                    sh 'java -jar "build/libs/music_adjaf_mf3-0.0.1.jar"'
                 }
             }
         }
