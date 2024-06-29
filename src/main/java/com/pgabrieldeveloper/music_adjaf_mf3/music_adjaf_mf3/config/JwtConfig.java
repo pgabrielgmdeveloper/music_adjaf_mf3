@@ -3,6 +3,8 @@ package com.pgabrieldeveloper.music_adjaf_mf3.music_adjaf_mf3.config;
 import com.nimbusds.jose.jwk.JWKSet;
 import com.nimbusds.jose.jwk.RSAKey;
 import com.nimbusds.jose.jwk.source.ImmutableJWKSet;
+import lombok.extern.java.Log;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -17,8 +19,10 @@ import java.security.interfaces.RSAPublicKey;
 import java.security.spec.PKCS8EncodedKeySpec;
 import java.security.spec.X509EncodedKeySpec;
 import java.util.Base64;
+import java.util.logging.Logger;
 
 @Configuration
+@Slf4j
 public class JwtConfig {
     @Value("${security.jwt.pubkey}")
     private String key;
@@ -28,6 +32,9 @@ public class JwtConfig {
 
     @Bean
     JwtEncoder jwtEncoder() throws Exception {
+        log.info("Criando JWT ENCODER");
+        log.info("public Key: {}", key);
+        log.info("private Key: {}", priv);
         var jwk = new RSAKey.Builder(getPublicKey()).privateKey(getPrivateKey()).build();
         var jwks = new ImmutableJWKSet<>(new JWKSet(jwk));
         return new NimbusJwtEncoder(jwks);
