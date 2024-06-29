@@ -22,7 +22,7 @@ pipeline {
                     sh 'echo export BUCKET_NAME=$BUCKET_NAME >> ~/.bashrc'
                     sh 'echo export PUBLIC_KEY=$PUBLIC_KEY >> ~/.bashrc'
                     sh 'echo export PRIVATE_KEY=$PRIVATE_KEY >> ~/.bashrc'
-                    sh 'echo $PWD'
+                    sh 'echo $(ls)'
                     sh 'source ~/.bashrc'
                 }
             }
@@ -30,6 +30,7 @@ pipeline {
 
         stage('Build project') {
             steps {
+                echo "Iniciando pipeline"
                 script {
                     sh 'chmod +x ./gradlew'
                     sh './gradlew build'
