@@ -1,6 +1,5 @@
 pipeline {
     agent any
-    envi
     stages {
         stage('Add Env') {
             environment {
@@ -31,6 +30,7 @@ pipeline {
         stage('Build project') {
             steps {
                 script {
+                    sh 'pwd'
                     sh 'chmod +x ./gradlew'
                     sh './gradlew build'
                 }
