@@ -22,14 +22,18 @@ pipeline {
             }
         }
 
-        script {
-                    sh '''
-                    java -jar -Ddatabase.host="${env.DATABASE_HOST}" -Ddatabase.user="${env.DATABASE_USER_NAME}" \
-                    -Ddatabase.password="${env.DATABASE_PASSWORD}" -Daccess.key="${env.ACCESS_KEY}" \
-                    -Dsecret.key="${env.SECRET_KEY}" -Dbucket.name="${env.BUCKET_NAME}" \
-                    -Dpublic.key="${env.PUBLIC_KEY}" -Dprivate.key="${env.PRIVATE_KEY}" \
-                    "build/libs/music_adjaf_mf3-0.0.1.jar"
-                    '''
-                }
+        stage('Running Project') {
+            steps {
+                script {
+                            sh '''
+                            java -jar -Ddatabase.host="${env.DATABASE_HOST}" -Ddatabase.user="${env.DATABASE_USER_NAME}" \
+                            -Ddatabase.password="${env.DATABASE_PASSWORD}" -Daccess.key="${env.ACCESS_KEY}" \
+                            -Dsecret.key="${env.SECRET_KEY}" -Dbucket.name="${env.BUCKET_NAME}" \
+                            -Dpublic.key="${env.PUBLIC_KEY}" -Dprivate.key="${env.PRIVATE_KEY}" \
+                            "build/libs/music_adjaf_mf3-0.0.1.jar"
+                            '''
+                        }
+            }
+        }
     }
 }
