@@ -1,29 +1,28 @@
 pipeline {
     agent any
-
+    envi
     stages {
         stage('Add Env') {
+            environment {
+                DATABASE_HOST = credentials('db_host')
+                DATABASE_USER_NAME = credentials('db_user')
+                DATABASE_PASSWORD = credentials('db_password')
+                ACCESS_KEY = credentials('access_key')
+                SECRET_KEY = credentials('secret_key')
+                BUCKET_NAME = credentials('bucket_name')
+                PUBLIC_KEY = credentials('pub_key')
+                PRIVATE_KEY = credentials('priv_key')
+            }
             steps {
                 script {
-                    // Definir variáveis de ambiente
-                    def dbHost = credentials('db_host')
-                    def dbUsername = credentials('db_user')
-                    def dbPassword = credentials('db_password')
-                    def accessKey = credentials('access_key')
-                    def secretKey = credentials('secret_key')
-                    def bucketName = credentials('bucket_name')
-                    def publicKey = credentials('pub_key')
-                    def privateKey = credentials('priv_key')
-
-                    // Adicionar variáveis de ambiente ao .bashrc
-                    sh "echo \"export DATABASE_HOST='${dbHost}'\" >> ~/.bashrc"
-                    sh "echo \"export DATABASE_USER_NAME='${dbUsername}'\" >> ~/.bashrc"
-                    sh "echo \"export DATABASE_PASSWORD='${dbPassword}'\" >> ~/.bashrc"
-                    sh "echo \"export ACCESS_KEY='${accessKey}'\" >> ~/.bashrc"
-                    sh "echo \"export SECRET_KEY='${secretKey}'\" >> ~/.bashrc"
-                    sh "echo \"export BUCKET_NAME='${bucketName}'\" >> ~/.bashrc"
-                    sh "echo \"export PUB_KEY='${publicKey}'\" >> ~/.bashrc"
-                    sh "echo \"export PRIVATE_KEY='${privateKey}'\" >> ~/.bashrc"
+                    sh 'echo export DATABASE_HOST=$DATABASE_HOST >> ~/.bashrc'
+                    sh 'echo export DATABASE_USER_NAME=$DATABASE_USER_NAME >> ~/.bashrc'
+                    sh 'echo export DATABASE_PASSWORD=$DATABASE_PASSWORD >> ~/.bashrc'
+                    sh 'echo export ACCESS_KEY=$ACCESS_KEY >> ~/.bashrc'
+                    sh 'echo export SECRET_KEY=$SECRET_KEY >> ~/.bashrc'
+                    sh 'echo export BUCKET_NAME=$BUCKET_NAME >> ~/.bashrc'
+                    sh 'echo export PUBLIC_KEY=$PUBLIC_KEY >> ~/.bashrc'
+                    sh 'echo export PRIVATE_KEY=PRIVATE_KEY >> ~/.bashrc'
                     sh 'source ~/.bashrc'
                 }
             }
