@@ -25,7 +25,7 @@ pipeline {
                      sh 'export SECRET_KEY=$SECRET_KEY'
                      sh 'export BUCKET_NAME=$BUCKET_NAME'
                      sh 'export PUBLIC_KEY=$PUBLIC_KEY'
-                     sh 'export PRIVATE_KEY=$PRIVATE_KEY'
+                     sh 'export PRIVATE_KEY=...dsad'
                 }
             }
         }
