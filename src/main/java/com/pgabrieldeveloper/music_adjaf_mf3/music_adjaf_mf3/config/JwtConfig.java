@@ -20,9 +20,9 @@ import java.util.Base64;
 
 @Configuration
 public class JwtConfig {
-    @Value("${PUBLIC_KEY}")
+    @Value("${security.jwt.pubkey}")
     private String key;
-    @Value("${PRIVATE_KEY}")
+    @Value("${security.jwt.privkey}")
     private String priv;
 
 
