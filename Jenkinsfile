@@ -1,6 +1,5 @@
 pipeline {
     agent any
-    envi
     stages {
         stage('Add Env') {
             environment {
