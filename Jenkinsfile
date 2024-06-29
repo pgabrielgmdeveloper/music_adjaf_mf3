@@ -13,16 +13,16 @@ pipeline {
     stages {
         stage('Add Env') {
             sh '''
-                echo 'export DATABASE_HOST="$DATABASE_HOST"' >> ~/.bashrc
-                echo 'export DATABASE_USER_NAME="$DATABASE_USER_NAME"' >> ~/.bashrc
-                echo 'export DATABASE_PASSWORD="$DATABASE_PASSWORD"' >> ~/.bashrc
-                echo 'export ACCESS_KEY="$ACCESS_KEY"' >> ~/.bashrc
-                echo 'export SECRET_KEY="$SECRET_KEY"' >> ~/.bashrc
-                echo 'export BUCKET_NAME="$BUCKET_NAME"' >> ~/.bashrc
-                echo 'export PUBLIC_KEY="$PUBLIC_KEY"' >> ~/.bashrc
-                echo 'export PRIVATE_KEY="$PRIVATE_KEY"' >> ~/.bashrc
-                '''
-            }
+                                    echo 'export DATABASE_HOST="$DATABASE_HOST"' >> ~/.bashrc
+                                    echo 'export DATABASE_USER_NAME="$DATABASE_USER_NAME"' >> ~/.bashrc
+                                    echo 'export DATABASE_PASSWORD="$DATABASE_PASSWORD"' >> ~/.bashrc
+                                    echo 'export ACCESS_KEY="$ACCESS_KEY"' >> ~/.bashrc
+                                    echo 'export SECRET_KEY="$SECRET_KEY"' >> ~/.bashrc
+                                    echo 'export BUCKET_NAME="$BUCKET_NAME"' >> ~/.bashrc
+                                    echo 'export PUBLIC_KEY="$PUBLIC_KEY"' >> ~/.bashrc
+                                    echo 'export PRIVATE_KEY="$PRIVATE_KEY"' >> ~/.bashrc
+                                '''
+        }
         stage('Build project') {
             steps {
                 script {
