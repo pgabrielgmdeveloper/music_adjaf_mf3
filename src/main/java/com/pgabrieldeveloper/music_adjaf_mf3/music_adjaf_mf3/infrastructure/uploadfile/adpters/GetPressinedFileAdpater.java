@@ -13,7 +13,7 @@ public class GetPressinedFileAdpater implements GetPressinedFile {
 
     private final AmazonS3 amazonS3;
 
-    @Value("${BUCKET_NAME}")
+    @Value("${cloud.s3.bucket.name}")
     private String bucketName;
 
     @Override

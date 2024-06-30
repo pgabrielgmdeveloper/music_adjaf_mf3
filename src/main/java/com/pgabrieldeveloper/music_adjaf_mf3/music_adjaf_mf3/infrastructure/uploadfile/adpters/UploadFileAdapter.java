@@ -15,7 +15,7 @@ public class UploadFileAdapter implements UploadFile {
 
     private final AmazonS3 amazonS3;
 
-    @Value("${BUCKET_NAME}")
+    @Value("${cloud.s3.bucket.name}")
     private String bucketName;
 
     @Override

@@ -13,6 +13,7 @@ import java.util.stream.Collectors;
 @Service
 @RequiredArgsConstructor
 public class JWTService {
+
     private final JwtEncoder encoder;
     private final JwtDecoder decoder;
 
@@ -32,14 +33,10 @@ public class JWTService {
     public String validateToken(String token){
         try{
             var tokenn = this.decoder.decode(token);
-            return  tokenn.getSubject() ;
+            return  tokenn.getSubject();
         }catch (JwtValidationException ex) {
             return "";
         }
 
     }
-
-//    private Instant getExpirationDate(){
-//        return LocalDateTime.now().plusHours(2).toInstant(ZoneOffset.of("-03:00"));
-//    }
 }
