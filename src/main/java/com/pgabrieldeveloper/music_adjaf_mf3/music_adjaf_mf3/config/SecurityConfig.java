@@ -54,6 +54,8 @@ public class SecurityConfig {
         config.addAllowedOrigin("http://localhost:4200");
         config.addAllowedOrigin("http://localhost:80");
         config.addAllowedOrigin("http://localhost");
+        config.addAllowedOrigin("http://191.252.186.3");
+        config.addAllowedOrigin("http://191.252.186.3:80");
         config.addAllowedHeader(HttpHeaders.CONTENT_TYPE);
         config.addAllowedHeader(HttpHeaders.AUTHORIZATION);
         config.addAllowedMethod("*");
