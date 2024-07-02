@@ -31,9 +31,6 @@ public class JwtConfig {
 
     @Bean
     JwtEncoder jwtEncoder() throws Exception {
-        log.info("Criando JWT ENCODER");
-        log.info("public Key: {}", key);
-        log.info("private Key: {}", priv);
         var jwk = new RSAKey.Builder(getPublicKey()).privateKey(getPrivateKey()).build();
         var jwks = new ImmutableJWKSet<>(new JWKSet(jwk));
         return new NimbusJwtEncoder(jwks);
